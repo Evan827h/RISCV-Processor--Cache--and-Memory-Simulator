@@ -1,0 +1,9 @@
+addi x20 x0 500
+addi x6 x0 700
+addi x5 x0 6
+sb x5 0(x20)
+sb x5 0(x6)
+flw f24 0(x20)
+fadd.s f4 f24 f2
+flw f23 0(x6)
+fsw f24 0(x29)

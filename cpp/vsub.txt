@@ -1,0 +1,34 @@
+# declare array address pointers
+#assuming ram has already been filled with data for the 3 arrays
+#x0 = 0
+#x1 = 1
+#x2 = sp
+#array a
+addi x3 x0 1024
+#array b
+addi x4 x0 2048
+#array d
+addi x5 x0 4096
+#int i = x6, x7 =256
+addi x7 x0 256
+#i address pointer to A = x8
+add x8 x0 x3
+#i address pointer to B = x9
+add x9 x0 x4
+#i address pointer to D = x10
+add x10 x0 x5
+loop:
+bge x6 x7 exit
+#A[i] = f9
+flw f9 0(x8)
+#B[i] = f10
+flw f10 0(x9)
+#D[i] = f11
+fsub.s f11 f9 f10
+fsw f11 0(x10)
+addi x6 x6 1
+addi x8 x8 1
+addi x9 x9 1
+addi x10 x10 1
+j loop
+exit:
